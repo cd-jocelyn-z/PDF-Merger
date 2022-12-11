@@ -1,19 +1,15 @@
-import PyPDF2
+from PyPDF2 import PdfFileMerger
 import os
 
-merger = PyPDF2.PdfFileMerger()
-
+merger = PdfFileMerger()
+#sorting files in the directory so that the chapters follow the same order in the newly generated pdf
 files = os.listdir()
-#print(files)
-
 sorted_files = sorted(files)
-#print(sorted_files)
-
 
 for file in sorted_files:
     if file.endswith(".pdf"):
-        print(file)
         merger.append(file)
+        print(file)
         
 merger.write("combined.pdf")
 merger.close()
